@@ -23,10 +23,12 @@ class MealTest {
 
     @Test
     void referencesToTheSameObjectShouldBeEqual() {
-        Meal meal_1=new Meal(10);
 
+        //given
+        Meal meal_1=new Meal(10);
         Meal meal_2=meal_1;
 
+        //then
         assertSame(meal_1,meal_2);
     }
 
