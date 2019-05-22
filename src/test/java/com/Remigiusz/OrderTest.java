@@ -7,6 +7,8 @@ import static org.hamcrest.core.IsNull.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.hamcrest.core.IsEqual;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -14,6 +16,19 @@ import java.util.Arrays;
 import java.util.List;
 
 public class OrderTest {
+    private Order order;
+
+    @BeforeEach
+    void initializeOrder() {
+        order= new Order();
+    }
+
+    @AfterEach
+    void cleanUp()
+    {
+        order.cancel();
+    }
+
 
     @Test
     void testAssertArrayEquals() {
@@ -28,8 +43,7 @@ public class OrderTest {
 
     @Test
    void mealListShouldBEEmptyAfterCreatonOrder() {
-        //given
-        Order order=new Order();
+
 
         //then
         assertThat(order.getMeals(),empty());
@@ -44,7 +58,7 @@ public class OrderTest {
         //given
         Meal meal_1=new Meal(20,"Potato");
         Meal meal_2=new Meal(15,"Sandwich");
-        Order order=new Order();
+
 
 
         //when
@@ -61,7 +75,6 @@ public class OrderTest {
 
         //given
         Meal meal_2=new Meal(15,"Sandwich");
-        Order order=new Order();
 
         //when
         order.addMeal(meal_2);
@@ -78,7 +91,6 @@ public class OrderTest {
         //given
         Meal meal_1=new Meal(20,"Pizza");
         Meal meal_2=new Meal(15,"Sandwich");
-        Order order=new Order();
 
         //when
         order.addMeal(meal_2);

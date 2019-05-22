@@ -24,4 +24,15 @@ public class Order {
     public void setMeals(List<Meal> meals) {
         this.meals = meals;
     }
+
+    void cancel() {
+        this.meals.clear();
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "meals=" + meals +
+                '}';
+    }
 }

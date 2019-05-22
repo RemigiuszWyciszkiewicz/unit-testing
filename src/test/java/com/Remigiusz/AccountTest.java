@@ -6,6 +6,9 @@ import static org.hamcrest.core.IsEqual.*;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.assumingThat;
+
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 
@@ -68,6 +71,20 @@ import org.junit.jupiter.api.Test;
         assertNotNull(defaultDeliveryAddress);
         assertThat(defaultDeliveryAddress,equalTo(notNullValue()));
 
+    }
+
+
+    @RepeatedTest(5)
+     void newAccountWithNotNullAddressShouldBeActive() {
+
+        //given
+        Address address=new Address("Puławka" , 46);
+
+        //when
+        Account account=new Account(address);
+
+        //then
+        assumingThat(address != null,() -> {assertTrue(account.isActive());});
     }
 
 }
