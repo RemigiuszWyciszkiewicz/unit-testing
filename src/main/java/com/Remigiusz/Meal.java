@@ -6,6 +6,17 @@ public class Meal {
 
     private int price;
     private String namel;
+    private int quantity;
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public Meal(int price, String namel, int quantity) {
+        this.price = price;
+        this.namel = namel;
+        this.quantity = quantity;
+    }
 
     public Meal(int price, String namel) {
         this.price = price;

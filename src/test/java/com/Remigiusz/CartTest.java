@@ -1,6 +1,7 @@
 package com.Remigiusz;
 
 import org.hamcrest.core.IsNull;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
@@ -12,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CartTest {
 
+    @Tag("test")
     @Test
     void symulateLargeOrder() {
 
@@ -21,7 +23,7 @@ class CartTest {
         //than
         assertTimeout(Duration.ofMillis(10),cart::symulateLargeOrder);
     }
-
+    @Tag("test")
     @Test
     void cardShouldBeEmptyAfterAddingOrderToCard() {
         //given

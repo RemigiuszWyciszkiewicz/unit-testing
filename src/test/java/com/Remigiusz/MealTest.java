@@ -1,16 +1,24 @@
 package com.Remigiusz;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestFactory;
+import org.junit.jupiter.api.function.Executable;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.core.IsEqual.*;
 import static org.hamcrest.core.IsNull.notNullValue;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
 class MealTest {
 
@@ -75,4 +83,15 @@ class MealTest {
     void mealPricesShouldBeLowerThanTwenty(int price) {
         assertThat(price,lessThan(10));
     }
+
+    @TestFactory
+    Collection<DynamicTest> dynamicTestCollection() {
+        return Arrays.asList(
+                dynamicTest("Dynamic test 1", () -> assertThat(5,lessThan(6))),
+                dynamicTest("Dynamic test 2", () -> assertEquals(4,2*2))
+
+        );
+    }
+
+
 }

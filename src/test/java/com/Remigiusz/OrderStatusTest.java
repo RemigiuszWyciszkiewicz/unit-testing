@@ -7,6 +7,8 @@ import org.junit.jupiter.params.provider.EnumSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Stream;
 
 import static org.hamcrest.MatcherAssert.*;
@@ -27,8 +29,9 @@ public class OrderStatusTest {
 
     @ParameterizedTest
     @MethodSource("createMealWithNameAndPrice")
-    void burgersShouldHaveCorrectNameAndPrice(String s,int price) {
-        
+    void burgersShouldHaveCorrectNameAndPrice(String name,int price) {
+        assertThat(name,containsString("Kebab"));
+        assertThat(price,greaterThanOrEqualTo(10));
     }
 
     private static Stream<Arguments> createMealWithNameAndPrice(){
@@ -37,6 +40,20 @@ public class OrderStatusTest {
                     Arguments.of("Kebab",13),
                     Arguments.of("Fish",20)
             );
+    }
+
+    @ParameterizedTest
+    @MethodSource("createCakeNames")
+    void cackenamesShouldEndWithCake(String name) {
+
+        assertThat(name,notNullValue());
+        assertThat(name,endsWith("cake"));
+    }
+
+    private static Stream<String> createCakeNames() {
+        List<String> strings = Arrays.asList("cheesecake","Fruitcake","Cupcake");
+
+        return strings.stream();
     }
 
 }
