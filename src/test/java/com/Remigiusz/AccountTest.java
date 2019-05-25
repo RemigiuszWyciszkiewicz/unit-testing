@@ -87,4 +87,14 @@ import org.junit.jupiter.api.Test;
         assumingThat(address != null,() -> {assertTrue(account.isActive());});
     }
 
+    @Test
+     void invalidEmailShouldThrowException() {
+
+        //given
+        Account account=new Account();
+
+        //then
+        assertThrows(IllegalArgumentException.class,() -> account.setMail("wrongEmail"));
+    }
+
 }

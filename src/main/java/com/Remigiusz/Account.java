@@ -8,6 +8,7 @@ public class Account {
 
     private boolean active;
     private Address defaultDeliveryAddress;
+    private String mail;
 
     public Account(Address defaultDeliveryAddress) {
         this.defaultDeliveryAddress = defaultDeliveryAddress;
@@ -16,6 +17,16 @@ public class Account {
         }else {
             this.active = false;
         }
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        if(mail.matches("test@test.com"))
+        this.mail = mail;
+        else throw new IllegalArgumentException("Bad format");
     }
 
     public boolean isActive() {

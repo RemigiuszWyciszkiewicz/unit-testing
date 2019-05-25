@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class OrderTest {
+public class    OrderTest {
     private Order order;
 
     @BeforeEach
@@ -120,4 +120,46 @@ public class OrderTest {
 
 
     }
+
+    @Test
+    void orderTotalPriceShoulNotExceedMaxIntValue() {
+
+        //given
+        Meal meal_1=new Meal(Integer.MAX_VALUE,"Pizza");
+        Meal meal_2=new Meal(Integer.MAX_VALUE,"Sandwich");
+
+        order.addMeal(meal_1);
+        order.addMeal(meal_2);
+
+        //then
+        assertThrows(IllegalStateException.class,() -> order.totalPrice());
+
+    }
+
+    @Test
+    void emptyOrderTotalPriceShouldEqualZero() {
+
+        //then
+        assertThat(order.totalPrice(),is(0));
+
+    }
+
+    @Test
+    void cancelingOrderShouldRemoveAllItemsFromMealList() {
+
+        //given
+        Meal meal_1=new Meal(20,"Pizza");
+        Meal meal_2=new Meal(15,"Sandwich");
+
+        //when
+        order.addMeal(meal_2);
+        order.addMeal(meal_1);
+
+        order.cancel();
+
+        //then
+        assertThat(order.getMeals().size(),is(0));
+
+    }
+
 }

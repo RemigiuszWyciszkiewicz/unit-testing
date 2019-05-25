@@ -2,6 +2,7 @@ package com.Remigiusz;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Order {
 
@@ -27,6 +28,16 @@ public class Order {
 
     void cancel() {
         this.meals.clear();
+    }
+
+    int totalPrice() {
+
+        int sum = 0;
+
+        sum=this.meals.stream().mapToInt(Meal::getPrice).sum();
+
+        if(sum<0) throw new IllegalStateException();
+        else return sum;
     }
 
     @Override
